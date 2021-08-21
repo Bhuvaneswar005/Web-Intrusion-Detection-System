@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ML-IDS</title>
+
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='style.css') }}">
+</head>
+<body onload="checkbox( {{ tab[2] }}) ">
+    
+    <div class='middle'>
+
+    
+
+    <h1> Web Instrusion Detection System </h1>
+    
+
+    <p> select a random number for a server request </p>
+
+    <div class="slidecontainer">
+        
+        <div class="container">
+            
+            <form>
+
+            </form>
+          </div>
+
+     
+        <form action="#" method="post" onsubmit="return checkbox( {{ tab[2] }})">
+            
+            <h3>Choose which model to run</h3>
+            
+            
+            <label class="radio-inline">
+                <input type="radio" name="optradio" value = 1 id='1'>Guassian Naive Bayes
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value = 2 id='2'>Decision Tree
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value = 3 id='3'>Random Forest
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value = 4 id='4'>Support Vector Classifier
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value = 5 id='5'>Logistic Regression
+              </label>
+              <label class="radio-inline">
+                <input type="radio" name="optradio" value = 6 id='6'>Gradient Descent
+              </label>
+
+
+
+            {% if val != 0 %}
+            <p><input type="range" name='slid_val' min="0" max="149999" value="{{ val }}" class="slider" id="myRange"></p>
+            {% else %}
+            <p><input type="range" name='slid_val' min="0" max="149999" value="1" class="slider" id="myRange"></p>    
+            {% endif %}
+            
+            <p><input type='submit' value='submit' /></p>
+        </form>
+
+        <a href="{{ url_for('home') }}"><button class="btn btn-primary" style="color:rgb(255, 38, 0);text-align:center;">Reset</button></a>
+
+    </div>
+
+      <p>Value: <span id="demo"></span></p>
+
+
+
+      <script src="{{url_for('static', filename='script.js')}}">
+          
+
+      </script>
+
+
+      <br><br><br><br>
+      {% if val != 0 %}
+      <image src="{{ url_for('static', filename='df_styled1.png')}}"   class="border border-primary rounded"></image>   
+      <image src="{{ url_for('static', filename='df_styled2.png')}}"   class="border border-primary rounded"></image>  
+      <p> {{ tab }}</p>
+      <h1> The type of Instrusion Predicted by the {{ tab[3] }} model is: {{ tab[1] }} </h1>  
+      
+    </div>
+      <div class='models'>
+      <div class='right'>
+        <h3>Gaussian Naive Bayes</h3>  
+
+        Training Time: 0.43592000007629395
+        <br>
+        Testing time:  0.3578789234161377
+        <br>
+        Train score is: 0.8795114110829804
+        <br>
+        Test score is: 0.8790384414851528
+        <br>
+        <h3>Decision Tree</h3>
+        
+        Training time:  0.8171412944793701
+        <br>
+        Testing time:  0.03281140327453613
+        <br>
+        
+        Train score is: 0.9905829108684749
+        <br>
+        Test score is: 0.9905230421954646
+        <br><br><br>
+    </div>
+    <div class='mid'> 
+    <h3>Random Forest</h3>
+        
+        Training time:  5.833605051040649
+        <br>
+        Testing time:  0.698784351348877
+        
+        <br>
+        Train score is: 0.9999788515803912
+        <br>
+        Test score is: 0.999662632570065
+        <br>
+        <h3>Support Vector Classifier</h3>
+        
+        Training time:  112.80803918838501
+        <br>
+        Testing time:  63.59599232673645
+        <br>
+        Train score is: 0.9987552644458811
+        <br>
+        Test score is: 0.9987916112055059
+        <br><br><br>
+    </div> 
+    <div class='left'>
+        <h3>Logistic Regression</h3>
+        
+        Training time:  32.11604619026184
+        <br>
+        Testing time:  0.024485111236572266
+        <br>
+        Train score is: 0.9935285835997028
+        <br>
+        Test score is: 0.9935286792985211
+        <br>
+        <h3>GradientBoostingClassifier</h3>
+        
+        Training time:  271.5867328643799
+        <br>
+        Testing time:  2.168846368789673
+        <br>
+        Train score is: 0.9979304760811374
+        <br>
+        Test score is: 0.9977181693829856
+        <br><br><br>
+    </div>     
+    </div>
+
+      {% endif %}
+
+
+</body>
+</html>
